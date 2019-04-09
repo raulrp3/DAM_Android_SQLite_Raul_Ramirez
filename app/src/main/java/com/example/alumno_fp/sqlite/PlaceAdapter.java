@@ -56,4 +56,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         return places.size();
     }
 
+
+    public Place getPlace(int index){
+        return places.get(index);
+    }
+
+    public void removePlace(Place place){
+        places.remove(place);
+    }
 }
