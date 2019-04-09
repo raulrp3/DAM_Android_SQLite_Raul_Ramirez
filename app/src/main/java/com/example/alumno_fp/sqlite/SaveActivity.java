@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class SaveActivity extends AppCompatActivity {
 
-    EditText etId,etPlace,etCountry;
+    EditText etPlace,etCountry;
     Button buttonSave;
     private final int CODE_SAVE = 1;
 
@@ -24,12 +24,10 @@ public class SaveActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = etId.getText().toString().trim();
                 String place = etPlace.getText().toString().trim();
                 String country = etCountry.getText().toString().trim();
-                if (validate(id) && validate(place) && validate(country)){
+                if (validate(place) && validate(country)){
                     Intent intent = new Intent();
-                    intent.putExtra("Id",id);
                     intent.putExtra("Place",place);
                     intent.putExtra("Country",country);
                     setResult(CODE_SAVE,intent);
@@ -42,7 +40,6 @@ public class SaveActivity extends AppCompatActivity {
     }
 
     private void initUI(){
-        etId = findViewById(R.id.et_id);
         etPlace = findViewById(R.id.et_place);
         etCountry = findViewById(R.id.et_country);
         buttonSave = findViewById(R.id.button_save);

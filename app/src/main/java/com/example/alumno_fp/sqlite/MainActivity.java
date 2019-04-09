@@ -69,19 +69,19 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
 
         if (requestCode == CODE_SAVE){
-            String id = data.getStringExtra("Id");
             String place = data.getStringExtra("Place");
             String country = data.getStringExtra("Country");
 
             try {
                 ContentValues newRegister = new ContentValues();
-                newRegister.put("id",id);
                 newRegister.put("name",place);
                 newRegister.put("country",country);
                 db.insert("Places",null,newRegister);
 
-                places.add(new Place(id,place,country));
-                mAdapter.notifyDataSetChanged();
+                if (getLastID() != 0){
+                    places.add(new Place(String.valueOf(getLastID()),place,country));
+                    mAdapter.notifyDataSetChanged();
+                }
             }catch (Exception ex){
                 Log.i("ErrorDB",ex.getMessage());
             }
@@ -99,5 +99,15 @@ public class MainActivity extends AppCompatActivity {
                 places.add(new Place(id,name,country));
             }while(cursor.moveToNext());
         }
+    }
+
+    private int getLastID(){
+        Cursor cursor = db.rawQuery("SELECT id FROM Places",null);
+        int id = 0;
+        if (cursor.moveToLast()){
+            id = cursor.getInt(0);
+        }
+
+        return id;
     }
 }

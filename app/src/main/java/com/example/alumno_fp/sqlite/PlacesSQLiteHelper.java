@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class PlacesSQLiteHelper extends SQLiteOpenHelper {
 
-    String sqlCreate = "CREATE TABLE Places(id VARCHAR(100),name TEXT,country TEXT)";
+    String sqlCreate = "CREATE TABLE Places(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,country TEXT)";
 
     public PlacesSQLiteHelper(Context context, String nombre, SQLiteDatabase.CursorFactory factory, int version){
         super(context,nombre,factory,version);

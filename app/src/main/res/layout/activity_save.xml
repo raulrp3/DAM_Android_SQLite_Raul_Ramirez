@@ -10,12 +10,6 @@
     tools:context=".SaveActivity">
 
     <EditText
-        android:id="@+id/et_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/id"/>
-
-    <EditText
         android:id="@+id/et_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

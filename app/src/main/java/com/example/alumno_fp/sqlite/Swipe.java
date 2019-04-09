@@ -27,7 +27,7 @@ public class Swipe extends ItemTouchHelper.SimpleCallback {
         Place place = mAdapter.getPlace(position);
 
         mAdapter.removePlace(place);
-        db.delete("Places","id = '" + place.getId() + "'",null);
+        db.delete("Places","id = " + Integer.valueOf(place.getId()),null);
 
         mAdapter.notifyDataSetChanged();
     }
