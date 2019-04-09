@@ -5,4 +5,5 @@
     <string name="place">Lugar:</string>
     <string name="country">País:</string>
     <string name="save">Guardar</string>
+    <string name="update">Modificar</string>
 </resources>

@@ -57,7 +57,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAdapter(){
-        mAdapter = new PlaceAdapter(places,MainActivity.this);
+        mAdapter = new PlaceAdapter(places, MainActivity.this, new CustomItemClick() {
+            @Override
+            public void onClick(View view, int index) {
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                String id = places.get(index).getId();
+                String name = places.get(index).getPlace();
+                String country = places.get(index).getCountry();
+
+                intent.putExtra("Id",id);
+                intent.putExtra("Place", name);
+                intent.putExtra("Country", country);
+                startActivity(intent);
+            }
+        });
         listPlaces.setAdapter(mAdapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new Swipe(mAdapter,db));

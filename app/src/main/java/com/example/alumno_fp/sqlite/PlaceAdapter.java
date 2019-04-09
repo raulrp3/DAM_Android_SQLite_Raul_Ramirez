@@ -29,10 +29,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
 
     List<Place> places;
     Context context;
+    private CustomItemClick listener;
 
-    PlaceAdapter(List<Place> places,Context context){
+    PlaceAdapter(List<Place> places,Context context,CustomItemClick listener){
         this.places = places;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -40,6 +42,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item,viewGroup,false);
         final PlaceViewHolder pvh = new PlaceViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(v, pvh.getAdapterPosition());
+            }
+        });
 
         return pvh;
     }
